@@ -35,4 +35,14 @@ public final class Constants {
     public static final class LiftConstants {
         public static final int kLiftPort = 0;
     }
+
+    public static final class JoystickConstants {
+        public static final int kXStick1 = 0;
+        public static final int kYStick1 = 1;
+        public static final int kXStick2 = 4;
+        public static final int kYStick2 = 5;
+
+        public static final int kJoysick1Port = 0;
+        public static final int kJoystick2Port = 1;
+    }
 }

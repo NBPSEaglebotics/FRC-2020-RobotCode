@@ -8,8 +8,12 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.GenericHID;
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
+import frc.robot.Constants.JoystickConstants;
+import frc.robot.commands.DefaultDrive;
 import frc.robot.commands.ExampleCommand;
+import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.ExampleSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
 
@@ -22,18 +26,28 @@ import edu.wpi.first.wpilibj2.command.Command;
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
+  private final DriveSubsystem m_drive = new DriveSubsystem();
+  
 
   private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
+  
 
-
-
+  Joystick m_joystick1 = new Joystick(JoystickConstants.kJoysick1Port);
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.
    */
   public RobotContainer() {
     // Configure the button bindings
     configureButtonBindings();
-  }
+
+    m_drive.setDefaultCommand(
+      new DefaultDrive(m_drive, 
+      () -> m_joystick1.getRawAxis(JoystickConstants.kXStick1), 
+      () -> m_joystick1.getRawAxis(JoystickConstants.kYStick1), 
+      () -> m_joystick1.getRawAxis(JoystickConstants.kXStick2))
+    );
+    
+    }
 
   /**
    * Use this method to define your button->command mappings.  Buttons can be created by
