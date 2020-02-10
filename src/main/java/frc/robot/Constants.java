@@ -17,10 +17,10 @@ package frc.robot;
  */
 public final class Constants {
     public static final class DriveConstants {
-        public static final int kFrontLeftWheelPort = 0;
-        public static final int kFrontRightWheelPort = 0;
-        public static final int kBackLeftWheelPort = 0;
-        public static final int kBackRightWheelPort = 0;
+        public static final int kFrontLeftWheelPort = 2;
+        public static final int kFrontRightWheelPort = 3;
+        public static final int kBackLeftWheelPort = 4;
+        public static final int kBackRightWheelPort = 5;
     }
     
     public static final class IntakeConstants {
@@ -33,7 +33,13 @@ public final class Constants {
     }
 
     public static final class LiftConstants {
-        public static final int kLiftPort = 0;
+        public static final int kFrontLeftLiftPort = 0;
+        public static final int kFrontRightLiftPort = 0;
+        public static final int kBackLeftLiftPort = 0;
+        public static final int kBackRightLiftPort = 0;
+
+        public static final int kTopLimitSwitchPort = 0;
+        public static final int kBottomLimitSwitchPort = 0;
     }
 
     public static final class JoystickConstants {
