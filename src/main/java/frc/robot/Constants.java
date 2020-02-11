@@ -31,6 +31,12 @@ public final class Constants {
         public static final int kShooter1Port = 0;
         public static final int kShooter2Port = 0;
         public static final int kIndexPort = 0;
+
+        public static final int kIndexClosedPosition = 0;
+        public static final int kIndexOpenPosition = 0;
+
+        public static final double kIdealShotSpeed = 0;
+        public static final double kTimeToChargeUp = 0;
     }
 
     public static final class LiftConstants {
