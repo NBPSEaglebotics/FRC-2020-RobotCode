@@ -27,9 +27,9 @@ public class DriveSubsystem extends SubsystemBase {
   /**
    * Drives the robot using base mecanum (y stick 1 = forward, x stick 1 = sideways, x stick 2 = rotation)
    *
-   * @param x = x stick 1
-   * @param y = y stick 1
-   * @param c = x stick 2
+   * @param x = speed in x direction
+   * @param y = speed in y direction
+   * @param c = rotation speed
    */
   public void mecanumDrive(double x, double y, double c) {
     m_drive.driveCartesian(y,x,c);
@@ -37,9 +37,9 @@ public class DriveSubsystem extends SubsystemBase {
   /**
    * Drives the robot using base mecanum (y stick 1 = forward, x stick 1 = sideways, x stick 2 = rotation)
    * This, however, is in relation to the field instead of the robot
-   * @param x = x stick 1
-   * @param y = y stick 1
-   * @param c = x stick 2
+   * @param x = speed in x direction
+   * @param y = speed in y direction
+   * @param c = rotation speed
    * @param theta = navx gyro angle
    */
   public void mecanumDriveGyro(double x, double y, double c, double theta)
