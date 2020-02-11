@@ -28,7 +28,8 @@ public final class Constants {
     }
 
     public static final class ShooterConstants {
-        public static final int kShooterPort = 0;
+        public static final int kShooter1Port = 0;
+        public static final int kShooter2Port = 0;
         public static final int kIndexPort = 0;
     }
 

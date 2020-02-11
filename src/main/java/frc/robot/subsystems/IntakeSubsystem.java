@@ -8,7 +8,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.IntakeConstants;
 
 public class IntakeSubsystem extends SubsystemBase {
-    WPI_TalonSRX m_intake = new WPI_TalonSRX(IntakeConstants.kIntakePort);
+    private WPI_TalonSRX m_intake = new WPI_TalonSRX(IntakeConstants.kIntakePort);
 
     /**
      * this is the class for the intake

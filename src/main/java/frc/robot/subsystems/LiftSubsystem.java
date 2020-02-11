@@ -9,10 +9,10 @@ import frc.robot.Constants.LiftConstants;
 
 public class LiftSubsystem extends SubsystemBase {
     //creation of the motors for the lift
-    WPI_TalonSRX m_frontRightMotor = new WPI_TalonSRX(LiftConstants.kFrontRightLiftPort);
-    WPI_TalonSRX m_backRightMotor = new WPI_TalonSRX(LiftConstants.kBackRightLiftPort);
-    WPI_TalonSRX m_frontLeftMotor = new WPI_TalonSRX(LiftConstants.kFrontLeftLiftPort);
-    WPI_TalonSRX m_backLeftMotor = new WPI_TalonSRX(LiftConstants.kBackLeftLiftPort);
+    private WPI_TalonSRX m_frontRightMotor = new WPI_TalonSRX(LiftConstants.kFrontRightLiftPort);
+    private WPI_TalonSRX m_backRightMotor = new WPI_TalonSRX(LiftConstants.kBackRightLiftPort);
+    private WPI_TalonSRX m_frontLeftMotor = new WPI_TalonSRX(LiftConstants.kFrontLeftLiftPort);
+    private WPI_TalonSRX m_backLeftMotor = new WPI_TalonSRX(LiftConstants.kBackLeftLiftPort);
 
     //create a new LiftSubsystem
     public LiftSubsystem() {
