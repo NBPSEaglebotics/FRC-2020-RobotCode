@@ -13,24 +13,38 @@ public class DriveForwardTime extends CommandBase {
     private final double m_speed;
     private Timer timer = new Timer();
 
-
+    /**
+     * 
+     * @param time = time to drive forward
+     * @param speed = speed to drive
+     * @param drive = drive system
+     */
     public DriveForwardTime(double time, double speed, DriveSubsystem drive) {
         m_time = time;
         m_speed = speed;
         m_drive = drive;
     }
-
+    /**
+     * reset timer, turn on power
+     */
     @Override
     public void initialize() {
         timer.reset();
         timer.start();
         m_drive.mecanumDrive(0,m_speed,0);
     }
+    /**
+     * make sure power is turned off in the end
+     */
     @Override
     public void end(boolean interrupted)
     {
         m_drive.mecanumDrive(0, 0, 0);
     }
+    /**
+     * check to see if current time elapsed is greater than the time provided
+     * if yes, end the commandS
+     */
     @Override
     public boolean isFinished() {
         return timer.get() >= m_time;
