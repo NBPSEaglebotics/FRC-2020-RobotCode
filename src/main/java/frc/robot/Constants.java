@@ -17,26 +17,27 @@ package frc.robot;
  */
 public final class Constants {
     public static final class DriveConstants {
-        public static final int kFrontLeftWheelPort = 2;
-        public static final int kFrontRightWheelPort = 3;
-        public static final int kBackLeftWheelPort = 4;
-        public static final int kBackRightWheelPort = 5;
+        public static final int kFrontLeftWheelPort = 9;
+        public static final int kFrontRightWheelPort = 0;
+        public static final int kBackLeftWheelPort = 8;
+        public static final int kBackRightWheelPort = 1;
     }
     
     public static final class IntakeConstants {
-        public static final int kIntakePort = 0;
+        public static final int kIntakePort = 7;
+        public static final double kIntakeSpeed = -0.8;
     }
 
     public static final class ShooterConstants {
-        public static final int kShooter1Port = 0;
-        public static final int kShooter2Port = 0;
-        public static final int kIndexPort = 0;
+        public static final int kShooter1Port = 5;
+        public static final int kShooter2Port = 6;
+        public static final int kIndexPort = 9;
 
-        public static final int kIndexClosedPosition = 0;
-        public static final int kIndexOpenPosition = 0;
+        public static final double kIndexClosedPosition = .8;
+        public static final double kIndexOpenPosition = 0;
 
-        public static final double kIdealShotSpeed = 0;
-        public static final double kTimeToChargeUp = 0;
+        public static final double kIdealShotSpeed = -0.9; //ideal motor speed to run the shooter at
+        public static final double kTimeToChargeUp = 4; //time in seconds for the shooter to reach ideal speed
     }
 
     public static final class LiftConstants {

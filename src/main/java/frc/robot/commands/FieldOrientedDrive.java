@@ -28,6 +28,10 @@ public class FieldOrientedDrive extends CommandBase {
         m_c = c;
         addRequirements(m_drive);
     }
+    @Override
+    public void initialize() {
+        navx.reset();
+    }
 
     public void execute() {
         m_drive.mecanumDriveGyro(m_x.getAsDouble(), m_y.getAsDouble(), m_c.getAsDouble(), navx.getAngle());

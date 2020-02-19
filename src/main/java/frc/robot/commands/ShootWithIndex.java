@@ -34,8 +34,10 @@ public class ShootWithIndex extends CommandBase {
   //this waits until the shooter is charged up, then launches the balls
   @Override
   public void execute() {
-      if(timer.get() >= ShooterConstants.kTimeToChargeUp);
+      if(timer.get() >= ShooterConstants.kTimeToChargeUp)
+      {
         m_shooter.moveIndex(ShooterConstants.kIndexOpenPosition);
+      }
   }
 
   //When the command is over, turn off the shooter and close the index servo
