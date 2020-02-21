@@ -33,7 +33,7 @@ public final class Constants {
         public static final int kShooter2Port = 6;
         public static final int kIndexPort = 9;
 
-        public static final double kIndexClosedPosition = .8;
+        public static final double kIndexClosedPosition = .6;
         public static final double kIndexOpenPosition = 0;
 
         public static final double kIdealShotSpeed = -0.9; //ideal motor speed to run the shooter at
@@ -64,6 +64,6 @@ public final class Constants {
         public static final double kIdealStrafeValue = 0.2;
         public static final double kIdealForwardValue = 0.2;
         public static final double kIdealAreaValue = 2.5;
-        public static final double kP = 0.5;
+        public static final double kP = 0.0005;
     }
 }

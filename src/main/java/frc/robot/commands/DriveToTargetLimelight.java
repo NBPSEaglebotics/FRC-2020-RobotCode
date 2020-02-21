@@ -26,18 +26,18 @@ public class DriveToTargetLimelight extends CommandBase {
     {
         m_drive = subsystem;
     }
-
+    @Override
     public void initialize() {
         current = navx.getAngle();
     }
-
+    @Override
     public void execute() {
         error = current - navx.getAngle();
         straighten = error * LimelightConstants.kP;
         x = tx.getDouble(0.0);
         a = ta.getDouble(0.0);
         if(x >= 1)
-            m_drive.mecanumDrive(LimelightConstants.kIdealStrafeValue, straighten, 0);
+            m_drive.mecanumDrive(LimelightConstants.kIdealStrafeValue, -straighten, 0);
         else if(x <= -1)
             m_drive.mecanumDrive(-LimelightConstants.kIdealStrafeValue, straighten, 0);
         else
@@ -46,12 +46,17 @@ public class DriveToTargetLimelight extends CommandBase {
                 m_drive.mecanumDrive(0, -LimelightConstants.kIdealForwardValue, 0);
             else if(a >= LimelightConstants.kIdealAreaValue+0.5)
                 m_drive.mecanumDrive(0, LimelightConstants.kIdealForwardValue, 0);
-            else
-                end(false);
+        
         }
     }
-
+    @Override
     public void end(boolean interrupetd) {
         m_drive.mecanumDrive(0, 0, 0);
+    }
+    @Override
+    public boolean isFinished() {
+        if((-1<=x)&&(x<=1)&&(a <= LimelightConstants.kIdealAreaValue-0.5)&&(a >= LimelightConstants.kIdealAreaValue+0.5))
+            return true;
+        return false;
     }
 }
