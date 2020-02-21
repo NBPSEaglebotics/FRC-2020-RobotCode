@@ -7,12 +7,18 @@
 
 package frc.robot;
 
+import edu.wpi.first.networktables.NetworkTable;
+import edu.wpi.first.networktables.NetworkTableEntry;
+import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Constants.IntakeConstants;
 import frc.robot.Constants.JoystickConstants;
 import frc.robot.commands.DefaultDrive;
+import frc.robot.commands.DriveToTargetLimelight;
 import frc.robot.commands.ExampleCommand;
 import frc.robot.commands.FieldOrientedDrive;
 import frc.robot.commands.Intake;
@@ -40,6 +46,10 @@ public class RobotContainer {
 
   private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
   
+  NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight");
+    NetworkTableEntry tx = table.getEntry("tx");
+    NetworkTableEntry ta = table.getEntry("ta");
+    
 
   Joystick m_joystick1 = new Joystick(JoystickConstants.kJoysick1Port);
   /**
@@ -55,6 +65,7 @@ public class RobotContainer {
       () -> m_joystick1.getRawAxis(JoystickConstants.kYStick1), 
       () -> m_joystick1.getRawAxis(JoystickConstants.kXStick2))
     );
+
     
     }
 
@@ -71,6 +82,11 @@ public class RobotContainer {
     
       new JoystickButton(m_joystick1, 2)
       .whileHeld(new ShootWithIndex(m_shooterSubsystem));
+
+      new JoystickButton(m_joystick1, 3)
+      .whenPressed(new DriveToTargetLimelight(m_drive));
+
+      
     
   }
 

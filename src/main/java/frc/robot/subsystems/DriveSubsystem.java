@@ -10,12 +10,12 @@ import frc.robot.Constants.DriveConstants;
 
 public class DriveSubsystem extends SubsystemBase {
   // The motors on drive system
-  WPI_TalonSRX m_frontLeftMotor = new WPI_TalonSRX(DriveConstants.kFrontLeftWheelPort);
-  WPI_TalonSRX m_frontRightMotor = new WPI_TalonSRX(DriveConstants.kFrontRightWheelPort);
-  WPI_TalonSRX m_backLeftMotor = new WPI_TalonSRX(DriveConstants.kBackLeftWheelPort);
-  WPI_TalonSRX m_backRightMotor = new WPI_TalonSRX(DriveConstants.kBackRightWheelPort);
+  private WPI_TalonSRX m_frontLeftMotor = new WPI_TalonSRX(DriveConstants.kFrontLeftWheelPort);
+  private WPI_TalonSRX m_frontRightMotor = new WPI_TalonSRX(DriveConstants.kFrontRightWheelPort);
+  private WPI_TalonSRX m_backLeftMotor = new WPI_TalonSRX(DriveConstants.kBackLeftWheelPort);
+  private WPI_TalonSRX m_backRightMotor = new WPI_TalonSRX(DriveConstants.kBackRightWheelPort);
 
-  MecanumDrive m_drive = new MecanumDrive(m_frontLeftMotor, m_backLeftMotor, m_frontRightMotor, m_backRightMotor);
+  private MecanumDrive m_drive = new MecanumDrive(m_frontLeftMotor, m_backLeftMotor, m_frontRightMotor, m_backRightMotor);
   /**
    * Creates a new DriveSubsystem.
    */

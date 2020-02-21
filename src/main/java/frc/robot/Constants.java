@@ -59,4 +59,11 @@ public final class Constants {
         public static final int kJoysick1Port = 0;
         public static final int kJoystick2Port = 1;
     }
+
+    public static final class LimelightConstants {
+        public static final double kIdealStrafeValue = 0.2;
+        public static final double kIdealForwardValue = 0.2;
+        public static final double kIdealAreaValue = 2.5;
+        public static final double kP = 0.5;
+    }
 }
