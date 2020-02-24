@@ -17,8 +17,8 @@ package frc.robot;
  */
 public final class Constants {
     public static final class DriveConstants {
-        public static final int kFrontLeftWheelPort = 9;
-        public static final int kFrontRightWheelPort = 0;
+        public static final int kFrontLeftWheelPort = 10;
+        public static final int kFrontRightWheelPort = 11;
         public static final int kBackLeftWheelPort = 8;
         public static final int kBackRightWheelPort = 1;
     }
@@ -33,7 +33,7 @@ public final class Constants {
         public static final int kShooter2Port = 6;
         public static final int kIndexPort = 9;
 
-        public static final double kIndexClosedPosition = .6;
+        public static final double kIndexClosedPosition = .5;
         public static final double kIndexOpenPosition = 0;
 
         public static final double kIdealShotSpeed = -0.9; //ideal motor speed to run the shooter at
@@ -42,12 +42,18 @@ public final class Constants {
 
     public static final class LiftConstants {
         public static final int kFrontLeftLiftPort = 0;
-        public static final int kFrontRightLiftPort = 0;
-        public static final int kBackLeftLiftPort = 0;
-        public static final int kBackRightLiftPort = 0;
+        public static final int kFrontRightLiftPort = 2;
+        public static final int kBackLeftLiftPort = 9;
+        public static final int kBackRightLiftPort = 3;
 
-        public static final int kTopLimitSwitchPort = 0;
-        public static final int kBottomLimitSwitchPort = 0;
+        public static final int kTopLimitSwitchPort = 8;
+        public static final int kBottomLimitSwitchPort = 7;
+    }
+
+    public static final class SpinnerConstants {
+        public static final int kSpinnerPort = 4;
+
+        public static final double kIdealSpinnerSpeed = 1;
     }
 
     public static final class JoystickConstants {
@@ -61,9 +67,21 @@ public final class Constants {
     }
 
     public static final class LimelightConstants {
-        public static final double kIdealStrafeValue = 0.2;
+        public static final double kIdealStrafeValue = 0.4;
         public static final double kIdealForwardValue = 0.2;
+        public static final double kIdealRotateValue = 0.15;
+
         public static final double kIdealAreaValue = 2.5;
-        public static final double kP = 0.0005;
+        public static final double kAreaRangeValue = 0.3;
+
+        public static final double kP = 0.005;
+    }
+
+    public static final class AutoConstants {
+        public static final double kAutoShootPower = -0.9;
+        public static final double kAutoChargeUpTime = 2;
+        public static final double kAutoShootEndTime = 5;
+
+        
     }
 }

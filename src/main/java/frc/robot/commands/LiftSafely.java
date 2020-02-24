@@ -36,11 +36,15 @@ public class LiftSafely extends CommandBase {
     public void execute()
     {
         double adjustedSpeed = m_speed.getAsDouble();
-        if(topLimit.get())
-            adjustedSpeed = Math.min(adjustedSpeed, 0);
-        else if(bottomLimit.get())
+        
+        if(!topLimit.get())
             adjustedSpeed = Math.max(0, adjustedSpeed);
-        m_lift.lift(adjustedSpeed);
+        
+        else if(!bottomLimit.get())
+            adjustedSpeed = Math.min(adjustedSpeed, 0);
+        
+            
+        m_lift.lift(-adjustedSpeed);
     }
 
 

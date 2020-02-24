@@ -7,10 +7,16 @@
 
 package frc.robot;
 
+import com.kauailabs.navx.frc.AHRS;
+
+import edu.wpi.first.cameraserver.CameraServer;
+import edu.wpi.first.wpilibj.SerialPort;
 
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import frc.robot.subsystems.NAVXSubsystem;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -23,6 +29,8 @@ public class Robot extends TimedRobot {
 
   private RobotContainer m_robotContainer;
 
+  
+  
 
   /**
    * This function is run when the robot is first started up and should be used for any
@@ -32,7 +40,11 @@ public class Robot extends TimedRobot {
   public void robotInit() {
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
+    CameraServer.getInstance().startAutomaticCapture();
+    CameraServer.getInstance().startAutomaticCapture();
     m_robotContainer = new RobotContainer();
+    m_robotContainer.navx.reset();
+
   }
 
   /**
@@ -88,6 +100,7 @@ public class Robot extends TimedRobot {
     // teleop starts running. If you want the autonomous to
     // continue until interrupted by another command, remove
     // this line or comment it out.
+    
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
     }
@@ -98,6 +111,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void teleopPeriodic() {
+    //SmartDashboard.putNumber("navx", navx.getAngle());
   }
 
   @Override

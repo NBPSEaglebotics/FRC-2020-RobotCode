@@ -14,6 +14,7 @@ public class DriveSubsystem extends SubsystemBase {
   private WPI_TalonSRX m_frontRightMotor = new WPI_TalonSRX(DriveConstants.kFrontRightWheelPort);
   private WPI_TalonSRX m_backLeftMotor = new WPI_TalonSRX(DriveConstants.kBackLeftWheelPort);
   private WPI_TalonSRX m_backRightMotor = new WPI_TalonSRX(DriveConstants.kBackRightWheelPort);
+  
 
   private MecanumDrive m_drive = new MecanumDrive(m_frontLeftMotor, m_backLeftMotor, m_frontRightMotor, m_backRightMotor);
   /**
@@ -43,6 +44,6 @@ public class DriveSubsystem extends SubsystemBase {
    */
   public void mecanumDriveGyro(double x, double y, double c, double theta)
   {
-      m_drive.driveCartesian(x, -y, c, theta);
+      m_drive.driveCartesian(-x, y, c, theta);
   }
 }

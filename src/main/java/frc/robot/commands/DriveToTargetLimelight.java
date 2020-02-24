@@ -7,6 +7,7 @@ import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.DriveSubsystem;
+import frc.robot.subsystems.NAVXSubsystem;
 import frc.robot.Constants.LimelightConstants;
 import edu.wpi.first.wpilibj.SerialPort;
 
@@ -20,10 +21,11 @@ public class DriveToTargetLimelight extends CommandBase {
     NetworkTableEntry tx = table.getEntry("tx");
     NetworkTableEntry ta = table.getEntry("ta");
     double x, a, error, current, straighten;
-    AHRS navx = new AHRS(SerialPort.Port.kMXP);
+    NAVXSubsystem navx;
 
-    public DriveToTargetLimelight(DriveSubsystem subsystem)
+    public DriveToTargetLimelight(DriveSubsystem subsystem, NAVXSubsystem p_navx)
     {
+        navx = p_navx;
         m_drive = subsystem;
     }
     @Override
@@ -39,12 +41,12 @@ public class DriveToTargetLimelight extends CommandBase {
         if(x >= 1)
             m_drive.mecanumDrive(LimelightConstants.kIdealStrafeValue, -straighten, 0);
         else if(x <= -1)
-            m_drive.mecanumDrive(-LimelightConstants.kIdealStrafeValue, straighten, 0);
+            m_drive.mecanumDrive(-LimelightConstants.kIdealStrafeValue, -straighten, 0);
         else
         {
-            if(a <= LimelightConstants.kIdealAreaValue-0.5)
+            if(a <= LimelightConstants.kIdealAreaValue-LimelightConstants.kAreaRangeValue)
                 m_drive.mecanumDrive(0, -LimelightConstants.kIdealForwardValue, 0);
-            else if(a >= LimelightConstants.kIdealAreaValue+0.5)
+            else if(a >= LimelightConstants.kIdealAreaValue+LimelightConstants.kAreaRangeValue)
                 m_drive.mecanumDrive(0, LimelightConstants.kIdealForwardValue, 0);
         
         }
@@ -55,8 +57,6 @@ public class DriveToTargetLimelight extends CommandBase {
     }
     @Override
     public boolean isFinished() {
-        if((-1<=x)&&(x<=1)&&(a <= LimelightConstants.kIdealAreaValue-0.5)&&(a >= LimelightConstants.kIdealAreaValue+0.5))
-            return true;
-        return false;
+        return (x<=1&&x>=-1&&a >= LimelightConstants.kIdealAreaValue-LimelightConstants.kAreaRangeValue&&a <= LimelightConstants.kIdealAreaValue+LimelightConstants.kAreaRangeValue);
     }
 }

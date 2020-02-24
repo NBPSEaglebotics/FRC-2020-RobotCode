@@ -31,6 +31,9 @@ public class DriveForwardTime extends CommandBase {
     public void initialize() {
         timer.reset();
         timer.start();
+    }
+    public void execute()
+    {
         m_drive.mecanumDrive(0,m_speed,0);
     }
     /**
