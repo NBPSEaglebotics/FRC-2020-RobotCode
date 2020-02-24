@@ -58,7 +58,7 @@ public class RobotContainer {
   private final ShooterSubsystem m_shooterSubsystem = new ShooterSubsystem();
   private final LiftSubsystem m_lift = new LiftSubsystem();
   private final SpinnerSubsystem m_spin = new SpinnerSubsystem();
-  private final NAVXSubsystem navx = new NAVXSubsystem();
+  final NAVXSubsystem navx = new NAVXSubsystem();
   //commands
   private final FieldOrientedDrive m_FOD = new FieldOrientedDrive(m_drive, () -> m_joystick1.getRawAxis(JoystickConstants.kXStick1), () -> m_joystick1.getRawAxis(JoystickConstants.kYStick1), () -> m_joystick1.getRawAxis(JoystickConstants.kXStick2), () -> navx.getAngle());
   private final DefaultDrive m_default = new DefaultDrive(m_drive, () -> m_joystick1.getRawAxis(JoystickConstants.kXStick1), () -> m_joystick1.getRawAxis(JoystickConstants.kYStick1), () -> m_joystick1.getRawAxis(JoystickConstants.kXStick2));
@@ -87,7 +87,6 @@ public class RobotContainer {
     //publishes the choosers
     SmartDashboard.putData("Autonomous Mode", autonomousChooser);
     SmartDashboard.putData("Drive Mode", driveChooser);
-
     // Configure the button bindings
     configureButtonBindings();
     
@@ -140,7 +139,6 @@ public class RobotContainer {
 
   /**
    * Use this to pass the autonomous command to the main {@link Robot} class.
-   *
    * @return the command to run in autonomous
    */
   public Command getAutonomousCommand() {
