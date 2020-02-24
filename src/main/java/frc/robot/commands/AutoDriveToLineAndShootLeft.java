@@ -9,12 +9,12 @@ import frc.robot.subsystems.ShooterSubsystem;
  * A command to drvie the robot using mecanum with joystick input
  */
 
-public class AutoDriveToLineAndShoot extends CommandBase {
+public class AutoDriveToLineAndShootLeft extends CommandBase {
     private final DriveSubsystem m_drive;
     private final ShooterSubsystem m_shooter;
     
 
-    public AutoDriveToLineAndShoot(DriveSubsystem subsystem, ShooterSubsystem shooter)
+    public AutoDriveToLineAndShootLeft(DriveSubsystem subsystem, ShooterSubsystem shooter)
     {
         m_drive = subsystem;
         m_shooter = shooter;
@@ -24,7 +24,7 @@ public class AutoDriveToLineAndShoot extends CommandBase {
     public void initialize() {
         new SequentialCommandGroup(
             new DriveForwardTime(1, 0.3, m_drive),
-            new RotateToTargetLimelight(m_drive),
+            new RotateToTargetLimelight(m_drive, -1.5, -3.5),
             new AutoShootWithIndex(m_shooter)
             
         ).schedule();

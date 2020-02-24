@@ -6,7 +6,6 @@ import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.DriveSubsystem;
-import frc.robot.subsystems.NAVXSubsystem;
 import frc.robot.Constants.LimelightConstants;
 
 /**
@@ -18,11 +17,13 @@ public class RotateToTargetLimelight extends CommandBase {
     NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight");
     NetworkTableEntry tx = table.getEntry("tx");
     NetworkTableEntry ta = table.getEntry("ta");
-    double x, a, error, current, straighten;
+    double x, a, error, current, straighten, leftBound, rightBound;
     Timer timer = new Timer();
 
-    public RotateToTargetLimelight(DriveSubsystem subsystem) {
+    public RotateToTargetLimelight(DriveSubsystem subsystem, double leftBound, double rightBound) {
         m_drive = subsystem;
+        this.leftBound = leftBound;
+        this.rightBound = rightBound;
     }
 
     @Override
@@ -34,9 +35,9 @@ public class RotateToTargetLimelight extends CommandBase {
     public void execute() {
         x = tx.getDouble(0.0);
         a = ta.getDouble(0.0);
-        if(x >= -1.5)
+        if(x >= leftBound)
             m_drive.mecanumDrive(0, 0, LimelightConstants.kIdealRotateValue);
-        else if(x <= -3.5)
+        else if(x <= rightBound)
             m_drive.mecanumDrive(0, 0, -LimelightConstants.kIdealRotateValue);
     }
     @Override
@@ -45,7 +46,7 @@ public class RotateToTargetLimelight extends CommandBase {
     }
     @Override
     public boolean isFinished() {
-         if(x<=-1&&x>=-4&&timer.get()>1.5)
+         if(x<=leftBound-0.5&&x>=rightBound+.5&&timer.get()>1.5)
             return true;
         return false;
     }
