@@ -14,7 +14,7 @@ public class AutoShootWithIndex extends CommandBase {
   /**
    * Creates our shoot with index command
    * The idea of this command is to automatically charge up the shooter, open the index,
-   * let the balls shoot out, and, after the command is done being called, close the index and
+   * let the balls shoot out, and, after a set amount of time, close the index and
    * power down the shooter
    * @param shooter = the shooter
    */
@@ -47,7 +47,7 @@ public class AutoShootWithIndex extends CommandBase {
       m_shooter.moveIndex(ShooterConstants.kIndexClosedPosition);
   }
 
-  //Command is controlled by driver, doesnt need to end on its own
+  //Command ends after a constant time
   @Override
   public boolean isFinished() {
     if(timer.get() >= AutoConstants.kAutoShootEndTime)

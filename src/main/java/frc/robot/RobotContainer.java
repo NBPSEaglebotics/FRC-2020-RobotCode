@@ -116,23 +116,29 @@ public class RobotContainer {
    * {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-
+    /*
+    * Joystick 1
+    */
+    //a button
     new JoystickButton(m_joystick1, 1)
       .whenPressed(new Intake(m_intakeSubsystem, IntakeConstants.kIntakeSpeed))
       .whenReleased(new Intake(m_intakeSubsystem, 0));
-    
+    //b button
     new JoystickButton(m_joystick1, 2)
     .whileHeld(new ShootWithIndex(m_shooterSubsystem));
-    
+    //x button
     new JoystickButton(m_joystick1, 3)
     .whileHeld(new DriveToTargetLimelight(m_drive, navx));
-  
+    //y button (awesome command btw)
     new JoystickButton(m_joystick1, 4)
     .whileHeld(m_betterAutoAim);
-
+    /*
+    * Joystick 2
+    */
+    //shoulder button 1
     new JoystickButton(m_joystick2, 5)
     .whileHeld(new Spin(m_spin, -SpinnerConstants.kIdealSpinnerSpeed));
-
+    //2
     new JoystickButton(m_joystick2, 6)
     .whileHeld(new Spin(m_spin, SpinnerConstants.kIdealSpinnerSpeed));
 
@@ -144,7 +150,7 @@ public class RobotContainer {
    * @return the command to run in autonomous
    */
   public Command getAutonomousCommand() {
-    // An ExampleCommand will run in autonomous
+    // the command selected by the chooser will run
     return autonomousChooser.getSelected();
   }
 }

@@ -6,7 +6,8 @@ import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.ShooterSubsystem;
 
 /**
- * A command to drvie the robot using mecanum with joystick input
+ * this is one of our auto commands, meant to drive backwards from the line and shoot 
+ * the three balls preloaded
  */
 
 public class AutoDriveToLineAndShootLeft extends CommandBase {
@@ -20,6 +21,9 @@ public class AutoDriveToLineAndShootLeft extends CommandBase {
         m_shooter = shooter;
         addRequirements(m_drive, m_shooter);
     }
+    /*
+    * All we do here is create a sequential group with the elements created from other simpler commands
+    */
     @Override
     public void initialize() {
         new SequentialCommandGroup(

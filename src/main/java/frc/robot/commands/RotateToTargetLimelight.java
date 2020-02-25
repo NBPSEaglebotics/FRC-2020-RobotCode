@@ -9,7 +9,9 @@ import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.Constants.LimelightConstants;
 
 /**
- * A command to drvie the robot using mecanum with joystick input
+ * This command does the same thing as drivetotargetlimelight, but rotates
+ * instead of going on the x and y axes. This is much faster, but 
+ * also takes away the ability to score in the center port
  */
 
 public class RotateToTargetLimelight extends CommandBase {
@@ -31,6 +33,7 @@ public class RotateToTargetLimelight extends CommandBase {
         timer.reset();
         timer.start();
     }
+    //checks using limelight times if we are within bounds for shooting
     @Override
     public void execute() {
         x = tx.getDouble(0.0);
