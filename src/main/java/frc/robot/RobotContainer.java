@@ -26,6 +26,7 @@ import frc.robot.commands.ExampleCommand;
 import frc.robot.commands.FieldOrientedDrive;
 import frc.robot.commands.Intake;
 import frc.robot.commands.LiftSafely;
+import frc.robot.commands.Shoot;
 import frc.robot.commands.ShootWithIndex;
 import frc.robot.commands.Spin;
 import frc.robot.subsystems.DriveSubsystem;
@@ -36,6 +37,8 @@ import frc.robot.subsystems.NAVXSubsystem;
 import frc.robot.subsystems.ShooterSubsystem;
 import frc.robot.subsystems.SpinnerSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
+import edu.wpi.first.wpilibj2.command.ParallelRaceGroup;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
@@ -63,6 +66,15 @@ public class RobotContainer {
   private final FieldOrientedDrive m_FOD = new FieldOrientedDrive(m_drive, () -> m_joystick1.getRawAxis(JoystickConstants.kXStick1), () -> m_joystick1.getRawAxis(JoystickConstants.kYStick1), () -> m_joystick1.getRawAxis(JoystickConstants.kXStick2), () -> navx.getAngle());
   private final DefaultDrive m_default = new DefaultDrive(m_drive, () -> m_joystick1.getRawAxis(JoystickConstants.kXStick1), () -> m_joystick1.getRawAxis(JoystickConstants.kYStick1), () -> m_joystick1.getRawAxis(JoystickConstants.kXStick2));
   private final AutoDriveToLineAndShootLeft a_autoDriveToLineAndShootLeft = new AutoDriveToLineAndShootLeft(m_drive, m_shooterSubsystem);
+  //command groups
+  private final ParallelRaceGroup m_locateAndCharge = new ParallelRaceGroup(
+    new DriveToTargetLimelight(m_drive, navx),
+    new Shoot(m_shooterSubsystem)
+  );
+  private final ParallelCommandGroup m_confirmCharge = new ParallelCommandGroup(
+    m_locateAndCharge
+  );
+  
   //chooser
   private SendableChooser<Command> autonomousChooser = new SendableChooser<Command>();
   private SendableChooser<Command> driveChooser = new SendableChooser<Command>();
@@ -121,13 +133,14 @@ public class RobotContainer {
     
     new JoystickButton(m_joystick1, 3)
     .whileHeld(new DriveToTargetLimelight(m_drive, navx));
-
+    /*
     new JoystickButton(m_joystick1, 4)
     .whileHeld(new SequentialCommandGroup(
       new DriveToTargetLimelight(m_drive, navx),
       new ShootWithIndex(m_shooterSubsystem)
     ));
-    
+    */
+
     new JoystickButton(m_joystick2, 5)
     .whileHeld(new Spin(m_spin, -SpinnerConstants.kIdealSpinnerSpeed));
 
