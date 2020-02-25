@@ -1,13 +1,8 @@
 package frc.robot.subsystems;
 
-import com.ctre.phoenix.motorcontrol.ControlMode;
-
-
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-
 import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.wpilibj.SerialPort;
-
 
 public class NAVXSubsystem extends SubsystemBase {
     //its the navx 

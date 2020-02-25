@@ -20,7 +20,6 @@ import frc.robot.Constants.JoystickConstants;
 import frc.robot.Constants.SpinnerConstants;
 import frc.robot.commands.*;
 import frc.robot.subsystems.DriveSubsystem;
-import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.LiftSubsystem;
 import frc.robot.subsystems.NAVXSubsystem;
@@ -45,7 +44,6 @@ public class RobotContainer {
   Joystick m_joystick2 = new Joystick(JoystickConstants.kJoystick2Port);
   
   //subsystems
-  private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
   private final DriveSubsystem m_drive = new DriveSubsystem();
   private final IntakeSubsystem m_intakeSubsystem = new IntakeSubsystem();
   private final ShooterSubsystem m_shooterSubsystem = new ShooterSubsystem();
