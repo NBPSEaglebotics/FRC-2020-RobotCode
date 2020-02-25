@@ -18,17 +18,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Constants.IntakeConstants;
 import frc.robot.Constants.JoystickConstants;
 import frc.robot.Constants.SpinnerConstants;
-import frc.robot.commands.AutoDriveToLineAndShootLeft;
-import frc.robot.commands.DefaultDrive;
-import frc.robot.commands.DriveForwardTime;
-import frc.robot.commands.DriveToTargetLimelight;
-import frc.robot.commands.ExampleCommand;
-import frc.robot.commands.FieldOrientedDrive;
-import frc.robot.commands.Intake;
-import frc.robot.commands.LiftSafely;
-import frc.robot.commands.Shoot;
-import frc.robot.commands.ShootWithIndex;
-import frc.robot.commands.Spin;
+import frc.robot.commands.*;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
@@ -72,7 +62,12 @@ public class RobotContainer {
     new Shoot(m_shooterSubsystem)
   );
   private final ParallelCommandGroup m_confirmCharge = new ParallelCommandGroup(
-    m_locateAndCharge
+    m_locateAndCharge,
+    new TimerWait(4)
+  );
+  private final SequentialCommandGroup m_betterAutoAim = new SequentialCommandGroup(
+    m_confirmCharge,
+    new OpenIndex(m_shooterSubsystem, 3)
   );
   
   //chooser
@@ -133,13 +128,9 @@ public class RobotContainer {
     
     new JoystickButton(m_joystick1, 3)
     .whileHeld(new DriveToTargetLimelight(m_drive, navx));
-    /*
+  
     new JoystickButton(m_joystick1, 4)
-    .whileHeld(new SequentialCommandGroup(
-      new DriveToTargetLimelight(m_drive, navx),
-      new ShootWithIndex(m_shooterSubsystem)
-    ));
-    */
+    .whileHeld(m_betterAutoAim);
 
     new JoystickButton(m_joystick2, 5)
     .whileHeld(new Spin(m_spin, -SpinnerConstants.kIdealSpinnerSpeed));
